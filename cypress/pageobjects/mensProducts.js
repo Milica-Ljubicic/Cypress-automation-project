@@ -1,18 +1,18 @@
 class MensProducts {
-    
+
     get mensProductsPage() {
         return cy.get('#ui-id-5');
     }
     get mensBottoms() {
         return cy.xpath('//div[@class="block filter"]//li[2]//a[1]');
     }
-    get mensShort () {
+    get mensShort() {
         return cy.xpath('//img[@alt="Apollo Running Short"]');
     }
-    get mShortSize () {
+    get mShortSize() {
         return cy.get('#option-label-size-143-item-178');
     }
-    get mShortColor () {
+    get mShortColor() {
         return cy.get('#option-label-color-93-item-49');
     }
     get mensTops() {

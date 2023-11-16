@@ -1,5 +1,5 @@
 class WomensProducts {
-    get womensProductsPage(){
+    get womensProductsPage() {
         return cy.get('#ui-id-4');
     }
     get womenBottoms() {

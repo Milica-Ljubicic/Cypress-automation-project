@@ -10,7 +10,7 @@ class Checkout {
         return cy.get('input[name="city"]');
     }
     get state() {
-        return cy.get('input[name="region"]'); 
+        return cy.get('input[name="region"]');
     }
     get zipCode() {
         return cy.get('input[name="postcode"]');
