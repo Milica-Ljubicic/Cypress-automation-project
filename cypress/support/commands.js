@@ -1,25 +1,63 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Commands
+import WomensProducts from '../pageobjects/womensProducts';
+import MensProducts from '../pageobjects/mensProducts';
+import Checkout from '../pageobjects/checkoutPage'
+import 'cypress-xpath'
+
+Cypress.Commands.add('login', () => {
+    cy.session('login', () => {
+      return cy.fixture('userLogin').then((user) => {
+        cy.visit('/customer/account/login');
+        cy.get('#email').type(user.email);
+        cy.get('#pass').type(user.password);
+        cy.get('#send2').click();
+        cy.url().should('include', '/customer/account/');
+        cy.get('#maincontent').should('be.visible');
+      });
+    });
+  });
+  
+ Cypress.Commands.add('womenAddtoCart', () => {
+    WomensProducts.womensProductsPage.click();
+    WomensProducts.womenBottoms.click({force: true}); 
+    WomensProducts.womenShorts.click(); 
+    WomensProducts.wShortsSize.click(); 
+    WomensProducts.wShortColor.click();
+    WomensProducts.addToCart.click();
+    WomensProducts.womenTops.click({force: true});
+    WomensProducts.womenTank.click();
+    WomensProducts.wTankSize.click();
+    WomensProducts.wTankColor.click();
+    WomensProducts.addToCart.click();
+ })
+
+ Cypress.Commands.add('menAddtoCart', () => {
+    MensProducts.mensProductsPage.click();
+    MensProducts.mensBottoms.click();
+    MensProducts.mensShort.click();
+    MensProducts.mShortSize.click();
+    MensProducts.mShortColor.click();
+    MensProducts.addToCart.click();
+    MensProducts.mensTops.click({force:true});
+    MensProducts.mensTank.click();
+    MensProducts.mTankSize.click();
+    MensProducts.mTankColor.click();
+    MensProducts.addToCart.click();
+ })
+
+Cypress.Commands.add('checkout', () => {
+    return cy.fixture('checkoutInfo').then((checkout) => {
+    cy.get('.action.showcart').click();
+    cy.get('#top-cart-btn-checkout').click({force: true});
+    cy.visit('/checkout/#shipping')
+    Checkout.company.type(checkout.company);
+    Checkout.streetAddress.type(checkout.streetAddress);
+    Checkout.city.type(checkout.city);
+    Checkout.state.type(checkout.state);
+    Checkout.zipCode.type(checkout.zipCode);
+    cy.get(Checkout.country).select('Serbia')
+    Checkout.phoneNumber.type(checkout.phoneNumber);
+    Checkout.shippingMethod.check('$5.00')
+});
+});
+
