@@ -1,6 +1,3 @@
-import WomensProducts from '../pageobjects/womensProducts';
-import MensProducts from '../pageobjects/mensProducts';
-
 describe('Happy Path Test', () => {
   beforeEach(() => {
     // Used the custom login command with the userLogin fixture
@@ -13,22 +10,17 @@ describe('Happy Path Test', () => {
       cy.visit('/customer/account/')
       // Add women products to cart
       cy.womenAddtoCart();
-  
+      cy.get('.counter-number').contains('2');
       // Add men products to cart
       cy.menAddtoCart();
-    
+      cy.get('.counter-number').contains('4');
+
       // Proceed to checkout
       cy.checkout();
-
-    
-      // Assertions for checkout
-      //cy.url().should('include', '/checkout/success');
-      //cy.contains('Thank you for your purchase!');
+      cy.get('.page-title-wrapper').should('be.visible');
+      cy.get('.actions-toolbar').should('be.visible');
     });
   });
-  
-    //cy.get('.message-success success message').should('be.visible');
-    //cy.get('.action showcart').should('be.visible');
 
  
 

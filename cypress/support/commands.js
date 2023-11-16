@@ -50,14 +50,10 @@ Cypress.Commands.add('checkout', () => {
     cy.get('.action.showcart').click();
     cy.get('#top-cart-btn-checkout').click({force: true});
     cy.visit('/checkout/#shipping')
-    Checkout.company.type(checkout.company);
-    Checkout.streetAddress.type(checkout.streetAddress);
-    Checkout.city.type(checkout.city);
-    Checkout.state.type(checkout.state);
-    Checkout.zipCode.type(checkout.zipCode);
-    cy.get(Checkout.country).select('Serbia')
-    Checkout.phoneNumber.type(checkout.phoneNumber);
-    Checkout.shippingMethod.check('$5.00')
+    Checkout.shippingMethod.check();
+    cy.get(Checkout.nextButton).click();
+    cy.get(Checkout.placeOrder).click();
+    //cy.visit('/checkout/#payment')
 });
-});
+})
 
