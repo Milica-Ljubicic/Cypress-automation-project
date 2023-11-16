@@ -1,3 +1,5 @@
+//Happy Path Shopping Test
+
 describe('Happy Path Test', () => {
   beforeEach(() => {
     // Used the custom login command with the userLogin fixture
