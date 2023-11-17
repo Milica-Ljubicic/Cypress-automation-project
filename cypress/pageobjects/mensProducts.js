@@ -30,6 +30,9 @@ class MensProducts {
     get addToCart() {
         return cy.get('#product-addtocart-button');
     }
+    get assertCartItems() {
+        return cy.get('.counter-number');
+    }
 }
 
 export default new MensProducts();

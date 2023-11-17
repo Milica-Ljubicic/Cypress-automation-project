@@ -30,6 +30,12 @@ class Checkout {
     get placeOrder() {
         return ('.payment-method-content > :nth-child(4) > div.primary > .action > span');
     }
+    get successMessage() {
+        return cy.get('.page-title-wrapper');
+    }
+    get continueShoppingButton() {
+        return cy.get('.actions-toolbar');
+    }
 }
 
 export default new Checkout();

@@ -56,3 +56,4 @@ Cypress.Commands.add('checkout', () => {
   });
 })
 
+Cypress
